@@ -46,6 +46,8 @@ urlpatterns = [
     path('chairs', views.chair_view, name='chair'),
     path('accessories', views.accesory_view, name='accessory'),
     path('shopping_cart', views.cart_view, name='cart'),
+    path('api/cart_item_count/', views.cart_item_count, name='cart_item_count'),
+    path('remove_from_cart/<int:item_id>/', views.remove_from_cart, name='remove_from_cart'),
       
 
 ]

@@ -1,10 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     fetchCartItemCount();
-
-    // Escucha el evento personalizado 'cartUpdated' para actualizar el contador del carrito
-    document.addEventListener('cartUpdated', function() {
-        fetchCartItemCount();
-    });
 });
 
 function fetchCartItemCount() {

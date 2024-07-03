@@ -24,6 +24,7 @@
             {% if user.is_authenticated %}
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
                 <li><a href="{% url  'cart' %}"><i class="fas fa-shopping-cart shopping-cart-icon"></i></a>
+                <div class="total-cart" id="total-cart"></div>
             {% else %}
                 <li><a href="{% url 'login' %}">Log in</a></li>
             {% endif %}
@@ -31,3 +32,7 @@
     </nav>
     
 </header>
+
+{% block script %}
+    <script src="{% static 'scripts/navBar.js' %}"></script>
+{% endblock %}

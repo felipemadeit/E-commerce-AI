@@ -29,12 +29,31 @@ cohere_key = os.getenv("COHERE_KEY")
 
 
 
+@login_required
+def cart_item_count(request):
+    cart_items = Cart.objects.filter(user=request.user)
+    total_items = sum(item.quantity for item in cart_items)
+    return JsonResponse({'total_items': total_items})
+
+@login_required
+def remove_from_cart(request, item_id):
+    if request.method == 'POST':
+        cart_item = get_object_or_404(Cart, id=item_id, user=request.user)
+        cart_item.delete()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False, 'error': 'Invalid request'})
+
+
 def home_view(request):
+
+    products = Product.objects.all()
+    product_list = [f"{product.name}: {product.description} price: {product.price} id: {product.id}" for product in products]
 
     if not cohere_key:
         return JsonResponse({'error': 'Cohere API key is not set'}, status=500)
     
-    co = cohere.Client('n0S6QmnLWakgPT0MvgFqUBUKMJpAdlxvVq2F7tzq')
+    co = cohere.Client(cohere_key)
+    
 
     processors = Product.objects.filter(category=1)
     cards = Product.objects.filter(category=2)
@@ -53,9 +72,19 @@ def home_view(request):
             chat_messages.append({'sender': 'user', 'text': user_message})
             try:
                 response = co.chat(
-                    preamble="PC Guru, para JPC, un ecommerce de componentes de PC de gama media-alta, eres el bot encargado de ayudar a los usuarios que visitan la página. Tu función es proporcionar recomendaciones personalizadas, responder preguntas técnicas sobre hardware y facilitar el proceso de compra. Estás diseñado para mejorar la experiencia del usuario ofreciendo conocimientos especializados y asistencia práctica en la selección de productos tecnológicos.",
+                    model="command-r-plus",
+                    temperature=0.7,
+                    stop_sequences= ["usuario:"],    
+                    preamble = f"""
+                                PC Guru, eres el bot oficial para JPC, un ecommerce especializado en componentes de PC de gama media-alta. Tu misión es proporcionar recomendaciones personalizadas, responder preguntas técnicas sobre hardware y facilitar el proceso de compra. Tu objetivo es mejorar la experiencia del usuario ofreciendo conocimientos especializados y asistencia práctica en la selección de productos tecnológicos.
+                                A continuación, se proporciona una lista de productos disponibles: {', '.join(product_list)}. Cuando recomiendes un producto, siempre incluye el enlace al producto correspondiente en el formato HTML. El formato del enlace es: <a href="http://127.0.0.1:8000/product/<ID_DEL_PRODUCTO>">Product Link</a>.
+                                Recuerda siempre proporcionar enlaces precisos y asegurar que tus respuestas sean claras y útiles para el usuario.
+                                Ejemplo de respuesta correcta:
+                                - Aquí tienes un enlace a nuestra tarjeta gráfica NVIDIA GeForce RTX 4070 SUPER TRINITY 12GB BLACK EDITION: <a href="http://127.0.0.1:8000/product/254">Product Link</a>
+                                Usuario: {user_message}
+                                PC Guru:""",
                     message=user_message,
-                    
+                                        
                 )
                 chat_messages.append({'sender': 'bot', 'text': response.text})
             except:

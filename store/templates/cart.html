@@ -15,7 +15,8 @@
     <div class="container-added-products">
         <div class="scroll-container">
             {% for item in cart %}
-                <div class="cart-item">
+                <div class="cart-item" id="cart-item-{{ item.id }}">
+                    <div class="quit-element" onclick="removeFromCart({{ item.id }})">X</div>
                     <div class="mini-img">
                         <img src="{{ item.product.primary_img.url }}" alt="{{ item.product.name }}">
                     </div>
@@ -50,4 +51,5 @@
     const csrfToken = "{{ csrf_token }}";
 </script>
 <script src="{% static 'scripts/cart.js' %}"></script>
+<script src="{% static 'scripts/main.js' %}"></script>
 {% endblock %}

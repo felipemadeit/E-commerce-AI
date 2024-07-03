@@ -1,3 +1,5 @@
+// cart.js
+
 document.addEventListener("DOMContentLoaded", function () {
     window.updateQuantity = function(itemId, quantity, price) {
         fetch(cartUrl, {
@@ -22,7 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 let totalPriceElement = document.getElementById(`total-price-${itemId}`);
                 totalPriceElement.textContent = formatPrice(quantity * price);
                 updateCartTotal();
-                updateTotalItems(); // Actualiza la cantidad total de productos
+                updateTotalItems();
+                // Despacha el evento 'cartUpdated' aquí para actualizar el contador en todas las vistas
+                document.dispatchEvent(new CustomEvent('cartUpdated'));
             } else {
                 alert("Hubo un problema al actualizar la cantidad.");
             }
@@ -30,6 +34,51 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error("Error:", error);
         });
+    }
+
+    window.removeFromCart = function(itemId) {
+        fetch(`/remove_from_cart/${itemId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken') // Asegúrate de incluir el token CSRF
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Verificar si el elemento existe antes de intentar eliminarlo
+                let cartItemElement = document.getElementById(`cart-item-${itemId}`);
+                if (cartItemElement) {
+                    cartItemElement.remove();
+                    // Actualizar el contador de artículos en el carrito
+                    updateCartTotal();
+                    updateTotalItems();
+                    // Despacha el evento 'cartUpdated' aquí para actualizar el contador en todas las vistas
+                    document.dispatchEvent(new CustomEvent('cartUpdated'));
+                } else {
+                    console.error('Elemento no encontrado:', `cart-item-${itemId}`);
+                }
+            } else {
+                console.error('Error removing item:', data.error);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
     }
 
     function formatPrice(amount) {
@@ -41,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let grandTotal = 0;
         cartItems.forEach(item => {
             let totalPriceText = item.querySelector('[id^="total-price-"]').textContent;
-            // Remove currency symbol and convert formatted number to a float
             let totalPrice = parseFloat(totalPriceText.replace(/[^\d,-]/g, "").replace(/\./g, "").replace(/,/g, "."));
             grandTotal += isNaN(totalPrice) ? 0 : totalPrice;
         });
@@ -67,7 +115,8 @@ document.addEventListener("DOMContentLoaded", function () {
             element.textContent = formatPrice(isNaN(price) ? 0 : price);
         });
         updateCartTotal();
-        updateTotalItems(); // Actualiza la cantidad total de productos al iniciar
+        updateTotalItems();
+        fetchCartItemCount();  // Llama a fetchCartItemCount aquí para inicializar el contador
     }
 
     formatInitialPrices();

@@ -15,7 +15,7 @@
         </div>
         <span class="components-span">Accessories</span>
         <div class="product-card">
-            <a href="{% url 'prebuilds' %}"><img class="prebuild-img" src="{% static 'media/brand/prebuild.png' %}"></a>
+            <a href="{% url 'components' %}"><img class="prebuild-img" src="{% static 'media/brand/prebuild.png' %}"></a>
         </div>
         <span class="prebuild-span">Components</span>
         <div class="product-card">
@@ -178,12 +178,6 @@
         </div>
     </div>
 
-    <!--<div class="pre_builds">
-        <img src="{% static 'media/img-expert.png' %}">
-        <div class="container-h1"><h1>Stressed out by not<br>knowing what<br>components to use?</h1></div>
-        <a href="#" class="button-prebuilds "></a>
-    </div>-->   
-
     <div class="footer">
         <div class="container-creator">Created by FelipeMadeIt</div>
         <div class="line-social"></div>
@@ -214,9 +208,12 @@
         <div class="chat-content" id="chat-content">
             {% for message in chat_messages %}
                 <div class="message {{ message.sender }}">
-                    {{ message.text }}
+                    {{ message.text|safe }}
                 </div>
             {% endfor %}
+            <div class="message bot" id="typing-indicator" style="display: none;">
+                <em>PC Guru is typing...</em>
+            </div>
         </div>
     
         <form id="chat-form" method="POST" class="form-user">
@@ -232,4 +229,5 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'scripts/horizontalScroll.js' %}"></script>
     <script src="{% static 'scripts/windowBot.js' %}"></script>
+    <script src="{% static 'scripts/main.js' %}"></script>
 {% endblock %}

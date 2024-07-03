@@ -38,21 +38,42 @@ document.addEventListener("DOMContentLoaded", function () {
         $('#chat-form').on('submit', function (event) {
             event.preventDefault();
 
+            let userInput = $('#user_input').val();
+            if (!userInput.trim()) {
+                return; // Prevent empty submissions
+            }
+
+            // Add user message to chat
+            $('#chat-content').append('<div class="message user">' + userInput + '</div>');
+
+            // Clear input field
+            $('#user_input').val('');
+            scrollToBottom();
+
+            // Show typing indicator after user message
+            $('#chat-content').append('<div class="message bot" id="typing-indicator"><em>PC Guru is typing...</em></div>');
+            scrollToBottom();
+
             $.ajax({
-                url: '',
+                url: '', // URL of your backend that handles the chat
                 type: 'POST',
                 data: {
-                    'user_input': $('#user_input').val(),
+                    'user_input': userInput,
                     'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
                 },
                 success: function (data) {
-                    $('#chat-content').empty();
+                    // Remove typing indicator
+                    $('#typing-indicator').remove();
+
                     data.chat_messages.forEach(function (message) {
+                        // Add the message with HTML content
                         $('#chat-content').append('<div class="message ' + message.sender + '">' + message.text + '</div>');
                     });
-                    $('#user_input').val('');
-                    // Scroll to the bottom after messages are appended
                     scrollToBottom();
+                },
+                error: function () {
+                    // Hide typing indicator if there's an error
+                    $('#typing-indicator').hide();
                 }
             });
         });
