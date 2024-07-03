@@ -672,7 +672,7 @@ input[type="password"] {
     z-index: 99999999;
     cursor: pointer;
     background-color: #0c1821;
-    margin-top: 130px;
+    margin-top: 150px;
     margin-left: 24px;
     width: 40px; 
     height: 40px;
@@ -693,7 +693,7 @@ input[type="password"] {
     position: absolute;
     width: 40px; 
     height: 40px;
-    margin-top: 130px;
+    margin-top: 150px;
     margin-left: 1283px;
     border-radius: 50%;
     z-index: 99999999;
@@ -932,7 +932,7 @@ input[type="password"] {
 
 .carousel-container {
     top: 50px;
-    left: -250px;
+    left: -280px;
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -940,9 +940,12 @@ input[type="password"] {
     margin: 0 auto;
 }
 
+
 .carousel-track {
     display: flex;
     transition: transform 0.3s ease;
+    padding-top: 40px;
+    box-sizing: border-box;
 }
 
 .carousel-item {
@@ -950,11 +953,12 @@ input[type="password"] {
     width: 100%;
     height: 500px;
     box-sizing: border-box;
-    padding: 10px;
+
 }
 
 .carousel-item img {
     box-sizing: border-box;
+    margin-top: -2  0px;
     margin-left: 70px;
     width: 450px;
     height: auto;
@@ -2152,6 +2156,8 @@ input[type="password"] {
     margin: 10px 0;
     border-radius: 10px;
     max-width: 70%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .message.user {
@@ -2162,4 +2168,123 @@ input[type="password"] {
 .message.bot {
     background-color: #eee;
     align-self: flex-start;
+}
+
+.container-all-detail {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    z-index: 9999999999999999;
+
+}
+
+
+.button-close-detail {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    left: 1310px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.2s all ease-in;
+    color: white;
+    cursor: pointer;
+}
+
+.button-close-detail:hover {
+    background-color: #b9b9b9;
+    color: black;
+}
+
+.container-detail {
+    display: flex;
+    position: fixed;
+    top: 90px;
+    left: 250px;
+    width:65%;
+    height: 520px;
+    z-index: 9999999999;
+    background-color: rgb(120, 121, 138, 0.7);
+    overflow: hidden;
+}
+
+.container-detail-img {
+    display: 0 0 auto;
+    width: 90%;
+    height: 100%;
+    box-sizing: border-box;
+
+    padding-bottom: 20px;
+    padding-left: 150px;
+    padding-right: 250px;
+    overflow: hidden;
+    z-index: 9999999999999999999999 ;
+}
+
+.primary-img  {
+    display: block;
+    position: absolute;
+    object-fit: contain;
+    margin-top: 10px;
+    width: 500px;
+    height: auto;    
+}
+
+.second-img {
+    display: none;
+    position: absolute;
+    object-fit: contain;
+    width: 500px;
+    height: auto; 
+    
+}
+
+.mini-gallery {
+    display: flex;
+    width: 10%;
+    height: 100%;
+    border-left: 2px solid black;
+    align-items: center;
+}
+
+.square-second-img {
+    width: 100%;
+    height: 100px;
+    border-top: 2px solid black ;
+    border-bottom: 2px solid black;
+    padding-top:5px ;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.primary-mini-img {
+    display: none;
+    width: 80px;
+    margin-left: 5px;
+    height: auto;
+}
+.second-mini-img {
+    display: block;
+    width: 80px;
+    margin-left: 5px;
+    height: auto;
+}
+
+.second-mini-img:hover {
+    transform: scale(1.1);
 }

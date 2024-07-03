@@ -26,6 +26,51 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    const imgChange = document.getElementById('square-second-img');
+    const primaryImg = document.getElementById('primary-img');
+    const secondImg = document.getElementById('second-img');
+    const miniPrimaryImg = document.getElementById('primary-mini-img');
+    const miniSecondImg = document.getElementById('second-mini-img');
+    const divDetail = document.getElementById('container-all-detail');
+    const closeDetail = document.getElementById('button-close-detail');
+    const divImg = document.getElementById('carousel-item');
+
+
+    function openWindowDetail () {
+        divDetail.style.display = 'flex';
+    }
+
+    divImg.addEventListener('click', function () {
+        openWindowDetail();
+    })
+
+    function closeWindowDetail () {
+        divDetail.style.display = 'none';
+    }
+
+    closeDetail.addEventListener('click', function () {
+        closeWindowDetail();
+    })
+
+    function changeImg () {
+        if (primaryImg.style.display === 'block'|| primaryImg.style.display === '') {
+            primaryImg.style.display = 'none';
+            secondImg.style.display = 'block';
+            miniPrimaryImg.style.display = 'block';
+            miniSecondImg.style.display = 'none';
+        } else {
+            primaryImg.style.display = 'block';
+            secondImg.style.display = 'none';
+            miniPrimaryImg.style.display = 'none';
+            miniSecondImg.style.display = 'block';
+        }
+    }
+
+    imgChange.addEventListener('click', function() {
+        changeImg();
+    });
+
+
     // Botones de cantidad
     const decrementBtn = document.getElementById('decrement');
     const incrementBtn = document.getElementById('increment');
@@ -55,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Funciones para el carrito
+    
     const buttonAdd = document.querySelector('.btn-add');
     const buttonConfirm = document.querySelector('.btn-confirm');
     const buttonCancel = document.querySelector('.btn-cancel');
@@ -66,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const unitPrice = document.querySelector('.total-price').textContent;
 
     if (!buttonAdd || !buttonConfirm || !buttonCancel || !modalConfirm || !quantityInput || !unitPrice) {
-        return; // Salir si algún elemento no se encuentra
+        return; 
     }
 
     function formatPrice(amount) {
