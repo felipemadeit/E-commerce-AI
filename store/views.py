@@ -80,7 +80,7 @@ def home_view(request):
                                 A continuación, se proporciona una lista de productos disponibles: {', '.join(product_list)}. Cuando recomiendes un producto, siempre incluye el enlace al producto correspondiente en el formato HTML. El formato del enlace es: <a href="http://127.0.0.1:8000/product/<ID_DEL_PRODUCTO>">Product Link</a>.
                                 Recuerda siempre proporcionar enlaces precisos y asegurar que tus respuestas sean claras y útiles para el usuario.
                                 Ejemplo de respuesta correcta:
-                                - Aquí tienes un enlace a nuestra tarjeta gráfica NVIDIA GeForce RTX 4070 SUPER TRINITY 12GB BLACK EDITION: <a href="http://127.0.0.1:8000/product/254">Product Link</a>
+                                - Aquí tienes un enlace a nuestra tarjeta gráfica NVIDIA GeForce RTX 4070 SUPER TRINITY 12GB BLACK EDITION: <a href="http://127.0.0.1:8000/product/254">Link</a>
                                 Usuario: {user_message}
                                 PC Guru:""",
                     message=user_message,
@@ -517,14 +517,14 @@ def laptops_view (request):
     })
     
 
-def login_view (request):
+def login_view(request):
     if request.method == 'GET':
         return render(request, 'login.html',  {
             'form': AuthenticationForm
         })
     else:
         user = authenticate(request, username=request.POST['username'], password = request.POST['password'])
-        if user is None:
+        if user is None :
             return render(request, 'login.html', {
                 'form': AuthenticationForm,
                 'error' : 'Username or password is incorrect'
@@ -532,7 +532,8 @@ def login_view (request):
         else:
             login(request, user)
             return redirect('home')
-
+        
+    
 def sign_up_view (request):
     
     if request.method == 'GET':

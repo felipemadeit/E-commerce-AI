@@ -13,6 +13,7 @@
     </div>
 
     <div class="container-added-products">
+        <span class="no-products" id="no-products">There are no products in the cart</span>
         <div class="scroll-container">
             {% for item in cart %}
                 <div class="cart-item" id="cart-item-{{ item.id }}">
@@ -42,7 +43,7 @@
     </div>
 
 
-    <div class="pay-methods"></div>
+
 {% endblock %}
 
 {% block script %}

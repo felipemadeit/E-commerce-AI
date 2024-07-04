@@ -96,8 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('grand-total').textContent = formatPrice(grandTotal);
     }
 
+
+
     function updateTotalItems() {
         let cartItems = document.querySelectorAll('.cart-item');
+        let spanProducts = document.getElementById('no-products');
         let totalItems = 0;
         cartItems.forEach(item => {
             let quantityElement = item.querySelector('select.quantity-sec');
@@ -105,6 +108,12 @@ document.addEventListener("DOMContentLoaded", function () {
             totalItems += isNaN(quantity) ? 0 : quantity;
         });
         document.getElementById('total-items').textContent = `${totalItems} Products`;
+
+        if (totalItems == 0) {
+            spanProducts.style.display = 'block';
+        } else {
+            spanProducts.style.display = 'none';
+        }
     }
 
     function formatInitialPrices() {
@@ -116,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         updateCartTotal();
         updateTotalItems();
-        fetchCartItemCount();  // Llama a fetchCartItemCount aquí para inicializar el contador
+        fetchCartItemCount();  
     }
 
     formatInitialPrices();

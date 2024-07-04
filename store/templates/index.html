@@ -23,7 +23,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-        <link rel="icon" href="{% static 'media/brand/favicon-.png' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'media/brand/favicon.png' %}" type="image/x-icon">
 
     </head>
     <body>          
@@ -33,7 +33,15 @@
         {% include 'layouts/nav_bar.html' %}
     </header>
     {% block body %}
+
     {% endblock %}
+
+    <footer>
+        
+        {% include 'layouts/footer.html' %}
+
+    </footer>
+    
         {% block script %}
             <script type="module" src="{% static 'scripts/main.js' %}"></script>
         {% endblock %} 

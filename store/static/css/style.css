@@ -391,8 +391,9 @@ a {
 
 .footer {
     display: flex;
+    position: relative;
     width: 100%;
-    margin-top: 200px;
+    margin-top: 28%;
     height: 100px;
     background-color: #0c1821;
     
@@ -405,6 +406,7 @@ a {
     margin-top: 30px;
     margin-left: 800px;
     gap: 2rem;
+
 
 }
 
@@ -540,8 +542,8 @@ a {
     height: 20px;
     margin-top: 220px;
     margin-left: 100px;
-    color: white;
-    background-color: rebeccapurple;
+    color: red;
+    background-color: #0c1821;
 }
 
 .form-password {
@@ -821,6 +823,7 @@ input[type="password"] {
 }
 
 
+
 /* Extras of processors carousel */
 .show-all-processors {
     display: flex;
@@ -834,7 +837,22 @@ input[type="password"] {
     margin-left: 1080px;
     justify-content: center;
     align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s; 
+
 }
+
+
+
+.show-all-processors:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.5); 
+
+}
+
+.show-all-processors:active {
+    transform: translateY(0);
+}
+
 
 .show-all-processors a {
     color: white;
@@ -953,6 +971,7 @@ input[type="password"] {
     width: 100%;
     height: 500px;
     box-sizing: border-box;
+    cursor: pointer;
 
 }
 
@@ -1341,7 +1360,7 @@ input[type="password"] {
     margin-top: 5px;
     margin-right: 6px;
     border-radius: 20px;
-    border: 1px solid white;
+    border: 2px solid white;
     padding-top: 20px;
     box-sizing: border-box;
     position: relative; 
@@ -1405,7 +1424,7 @@ input[type="password"] {
     display: flex;
     margin-top: 50px;
     gap: 70px;
-    margin-left: 235px;
+    margin-left: 200px;
     width: 1100px;
     height: 60px;
     padding: 20px 430px 20px 470px;
@@ -1413,19 +1432,46 @@ input[type="password"] {
 }
 
 .btn-prev {
+    display: flex;
+    width: 100px;
+    height: 30px;
     position: absolute;
     color: white;
     font-size: 20px;
     margin-left: 30px;
+    align-items: center;
+    justify-content: center;
+    line-height: 30px;
+    border-radius: 20px;
+    transition: 0.3s all ease-in-out;
+}
+
+.btn-prev:hover {
+    background-color: #b9b9b9;
+    color: black;
 }
 
 .btn-next {
+    display: flex;
+    width: 100px;
+    height: 30px;
     text-align: center;
     position: absolute;
     color: white;
     font-size: 20px;
     margin-left: 130px;
+    align-items: center;
+    justify-content: center;
+    line-height: 30px;
+    border-radius: 20px;
+    transition: 0.3s all ease-in-out;
 }
+
+.btn-next:hover {
+    background-color: #b9b9b9;
+    color: black;
+}
+
 .container-filter {
     display:flex;
     position: absolute ;
@@ -1472,6 +1518,10 @@ input[type="password"] {
     color: black;
 }
 
+
+
+
+
 .show-all-cards {
     display: flex;
     position: absolute;
@@ -1484,11 +1534,26 @@ input[type="password"] {
     margin-left: 1080px;
     justify-content: center;
     align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s; 
+
+}
+
+
+.show-all-cards:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.5); 
+
+}
+
+.show-all-cards:active {
+    transform: translateY(0);
 }
 
 .show-all-cards a {
     color: white;
 }
+
+
 
 
 
@@ -1504,11 +1569,27 @@ input[type="password"] {
     margin-left: 1080px;
     justify-content: center;
     align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s; 
+
+}
+
+
+.show-all-laptops:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.5); 
+
+}
+
+.show-all-laptops:active {
+    transform: translateY(0);
 }
 
 .show-all-laptops a {
     color: white;
 }
+
+
+
 
 .show-all-keyboards {
     display: flex;
@@ -1522,7 +1603,11 @@ input[type="password"] {
     margin-left: 1070px;
     justify-content: center;
     align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s; 
+
 }
+
+
 
 .show-all-keyboards a {
     color: white;
@@ -1729,6 +1814,15 @@ input[type="password"] {
     font-size: 18px;
     top: 60px;
     left: 290px;
+}
+
+.no-products {
+    display: none;
+    width: 900px;
+    margin-top: 100px;
+    margin-left: 300px;
+    font-size: 30px;
+    color: white;
 }
 
 
@@ -2059,6 +2153,7 @@ input[type="password"] {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 
                 0 6px 20px rgba(0, 0, 0, 0.2);
+    z-index: 9999999;
 }
 
 .btn-message {
@@ -2139,6 +2234,7 @@ input[type="password"] {
     height: 50px;
     box-sizing: border-box;
     border-radius: 20px;
+    z-index: 299;
 }
 
 .form-user button {
@@ -2162,7 +2258,7 @@ input[type="password"] {
 
 .message.user {
     background-color: #dcf8c6;
-    margin-left: 70px;
+    margin-left: 75px;
 }
 
 .message.bot {

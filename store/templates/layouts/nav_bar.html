@@ -20,7 +20,6 @@
         <ul class="list-nav">
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'components' %}">Store</a></li>
-            <li><a href="#">Contact</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
                 <li><a href="{% url  'cart' %}"><i class="fas fa-shopping-cart shopping-cart-icon"></i></a>

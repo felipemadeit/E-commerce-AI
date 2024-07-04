@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
     // Button chat bot
     const btnBot = document.querySelector('.button-chat');
     const windowBot = document.querySelector('.windowBot');
@@ -17,17 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
         windowBot.style.display = 'none';
     }
 
-    btnBot.addEventListener('click', function () {
-        unfoldWindow();
-    });
-
-    closeBtn.addEventListener('click', function () {
-        closeWindow();
-    });
+    btnBot.addEventListener('click', unfoldWindow);
+    closeBtn.addEventListener('click', closeWindow);
 
     // Function to scroll to the bottom
     function scrollToBottom() {
-        var chatContent = document.getElementById("chat-content");
+        const chatContent = document.getElementById("chat-content");
         chatContent.scrollTop = chatContent.scrollHeight;
     }
 
@@ -54,6 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
             $('#chat-content').append('<div class="message bot" id="typing-indicator"><em>PC Guru is typing...</em></div>');
             scrollToBottom();
 
+            // Disable the submit button to prevent double submissions
+            $('#chat-form button[type=submit]').prop('disabled', true);
+
             $.ajax({
                 url: '', // URL of your backend that handles the chat
                 type: 'POST',
@@ -70,10 +67,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         $('#chat-content').append('<div class="message ' + message.sender + '">' + message.text + '</div>');
                     });
                     scrollToBottom();
+
+                    // Re-enable the submit button after the response
+                    $('#chat-form button[type=submit]').prop('disabled', false);
                 },
                 error: function () {
                     // Hide typing indicator if there's an error
                     $('#typing-indicator').hide();
+                    
+                    // Re-enable the submit button if there's an error
+                    $('#chat-form button[type=submit]').prop('disabled', false);
                 }
             });
         });
