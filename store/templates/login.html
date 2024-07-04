@@ -6,11 +6,13 @@
 
 {% block body %}
     <div class="container-form-login">
-        <form action="" method="POST" action="{% url 'login' %}?next={{ request.GET.next }}">
+        <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
-                <div class="error-login">
-                    {{ error }}
-                </div>
+            {% if error %}
+            <div class="error-login">
+                {{ error }}
+            </div>
+            {% endif %}
             <div class="form-username_login">
                 {{ form.username.label_tag }}
                 {{ form.username }}
@@ -19,8 +21,9 @@
                 {{ form.password.label_tag }}
                 {{ form.password }}
             </div>
+            <input type="hidden" name="next" value="{{ next }}">
             <button class="btn-login">
-                Log in 
+                Log in
             </button>
             <div class="to-sign">
                 <a href="{% url 'sign_up' %}">Create an Account</a>

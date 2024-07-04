@@ -31,6 +31,9 @@ cohere_key = os.getenv("COHERE_KEY")
 
 @login_required
 def cart_item_count(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({'error': 'User not authenticated'}, status=401)
+    
     cart_items = Cart.objects.filter(user=request.user)
     total_items = sum(item.quantity for item in cart_items)
     return JsonResponse({'total_items': total_items})
@@ -517,21 +520,6 @@ def laptops_view (request):
     })
     
 
-def login_view(request):
-    if request.method == 'GET':
-        return render(request, 'login.html',  {
-            'form': AuthenticationForm
-        })
-    else:
-        user = authenticate(request, username=request.POST['username'], password = request.POST['password'])
-        if user is None :
-            return render(request, 'login.html', {
-                'form': AuthenticationForm,
-                'error' : 'Username or password is incorrect'
-            })
-        else:
-            login(request, user)
-            return redirect('home')
         
     
 def sign_up_view (request):
@@ -569,18 +557,32 @@ def sign_out (request):
     logout(request)
     return redirect('home')
 
-class CustomLoginView(LoginView):
-    
-    template_name = 'login.html'
-    
-    def get_success_url(self):
-        next_url = self.request.GET.get('next')
-        if next_url:
-            return next_url
-        return reverse_lazy('home')
-    
-
-
+def login_view(request):
+    if request.method == 'GET':
+        next_url = request.GET.get('next', '')
+        print(f"GET - next: {next_url}")
+        return render(request, 'login.html', {
+            'form': AuthenticationForm(),
+            'next': next_url
+        })
+    else:
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            next_url = request.POST.get('next')
+            print(f"POST - next: {next_url}")
+            if next_url:
+                return redirect(next_url)
+            return redirect('home')
+        else:
+            next_url = request.POST.get('next', '')
+            print(f"POST - next (error): {next_url}")
+            return render(request, 'login.html', {
+                'form': form,
+                'error': 'Username or password is incorrect',
+                'next': next_url
+            })
 
 def product_view(request, product_id):
 

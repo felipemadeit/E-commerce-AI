@@ -539,11 +539,10 @@ a {
     display: flex;
     position: absolute;
     width: 200px;
-    height: 20px;
+    height: 30px;
     margin-top: 220px;
     margin-left: 100px;
-    color: red;
-    background-color: #0c1821;
+    color: white;
 }
 
 .form-password {
@@ -644,7 +643,7 @@ input[type="password"] {
     align-items: center;
     width: 200px;
     height: 30px;
-    margin-top: 45px;
+    margin-top: 60px;
     margin-left: 100px;
 }
 
@@ -1157,7 +1156,22 @@ input[type="password"] {
     padding: 1px 19px;
     box-sizing: border-box;
     text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;  
+
 }
+
+
+.please-login:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.5); 
+}
+
+.please-login:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.5); 
+}
+
+
 
 .please-login a {
     text-decoration: none;

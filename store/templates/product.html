@@ -1,15 +1,9 @@
 {% extends 'index.html' %}
-
 {% load static %}
-
 {% block title %}
     {{product.name}}
 {% endblock %}
-
 {% block body %}
-
-   
-
     <div class="carousel-container">
         <div class="carousel-track">
             <div class="carousel-item" id="carousel-item">
@@ -27,7 +21,7 @@
         <div class="button-close-detail" id="button-close-detail">
             X
         </div>
-        <div class="container-detail" >
+        <div class="container-detail">
             <div class="container-detail-img">
                 <img class="primary-img" id="primary-img" src="{{ product.primary_img.url }}">
                 <img class="second-img" id="second-img" src="{{ product.second_img.url }}">
@@ -59,26 +53,23 @@
         <p>{{product.description}}</p>
     </div>
 
-    
-
-
     <div class="price-product">
         <span>{{product.get_format_price}}</span>
     </div>
 
     {% if user.is_authenticated %}
-    <form method = "POST" action = "{% url 'product' product.id %}" id="addToCartForm">
-        {% csrf_token %}
-        <div class="quantity-selector">
-            <button type="button" id="decrement">-</button>
-            <input type="number" id="quantity" name="quantity" value="1" min="1" max="15">
-            <button type ="button" id="increment">+</button>
-        </div>
-        <button type="button" class="btn-add">
-            <h2>Add to cart</h2>
-            <img src="{% static 'media/icons-svg/shopping-cart.svg' %}" class="svg-cart">
-        </button>
-    </form>
+        <form method="POST" action="{% url 'product' product.id %}" id="addToCartForm">
+            {% csrf_token %}
+            <div class="quantity-selector">
+                <button type="button" id="decrement">-</button>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="15">
+                <button type="button" id="increment">+</button>
+            </div>
+            <button type="button" class="btn-add"> <!-- Changed type to button -->
+                <h2>Add to cart</h2>
+                <img src="{% static 'media/icons-svg/shopping-cart.svg' %}" class="svg-cart">
+            </button>
+        </form>
     {% else %}
         <div class="please-login">
             <a href="{% url 'login' %}?next={{ request.path }}"><h2>Please Login</h2></a>
@@ -95,13 +86,11 @@
             <div class="preview-added">
                 <img src="{{ product.primary_img.url }}">
                 <div class="line-total"></div>
-                    <h2 class="quantity-text"><span class="quantity-placeholder">This message will be replaced </span>&nbsp; units</h2>
-                    <h2 class="preview-name">{{product.name}}</h2>
-                    <span class="span-total">Total : </span>
-                    <span class="total-price">{{product.price}}</span>
+                <h2 class="quantity-text"><span class="quantity-placeholder">This message will be replaced </span>&nbsp; units</h2>
+                <h2 class="preview-name">{{product.name}}</h2>
+                <span class="span-total">Total : </span>
+                <span class="total-price">{{product.price}}</span>
             </div>
-            </div>
-            
         </div>
     </div>
 
@@ -110,10 +99,7 @@
         <h2>Your products were added correctly</h2>
         <img class="svg-success" src="{% static 'media/icons-svg/success.svg' %}">
     </div>
-
 </div>
-   
-
 {% endblock %}
 
 {% block script %}
