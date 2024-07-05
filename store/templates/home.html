@@ -11,17 +11,17 @@
     </div>
     <div class="container-cards">
         <div class="product-card">
-            <a href="{% url 'accessory' %}"><img class="products-img" src="{% static 'media/brand/compnts.png' %}"></a>            
+            <a href="{% url 'accessory' %}"><img class="products-img" id="accessories-img" src="{% static 'media/brand/compnts.png' %}"></a>            
         </div>
-        <span class="components-span">Accessories</span>
+        <span id="components-span" class="cards-span">Accessories</span>
         <div class="product-card">
-            <a href="{% url 'components' %}"><img class="prebuild-img" src="{% static 'media/brand/prebuild.png' %}"></a>
+            <a href="{% url 'components' %}"><img class="products-img" id="components-img" src="{% static 'media/brand/prebuild.png' %}"></a>
         </div>
-        <span class="prebuild-span">Components</span>
+        <span id="prebuild-span" class="cards-span">Components</span>
         <div class="product-card">
-            <a href="{% url 'laptops' %}"><img class="laptops-img" src="{% static 'media/brand/alp.png' %}"></a>
+            <a href="{% url 'laptops' %}"><img class="products-img" id="laptops-img" src="{% static 'media/brand/alp.png' %}"></a>
         </div>
-        <span class="laptop-span">Laptops</span>
+        <span id="laptop-span" class="cards-span">Laptops</span>
     </div>
 
     <!--Div for brands-->

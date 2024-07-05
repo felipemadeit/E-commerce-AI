@@ -1,4 +1,5 @@
 * {
+    
     margin: 0;
     padding: 0;
     font-family: "Asap Condensed", sans-serif;
@@ -40,6 +41,7 @@ header {
 .logo-nav {
     width: 70px;
     height: 70px;
+    margin-left: 50px;
 }
 
 .list-nav {
@@ -153,10 +155,13 @@ header {
 
 .container-cards {
     display: flex;
-    max-width: 100%;
-    height: 283px;
+    position: absolute;
+    top: 250px;
+    width: 100%;
+    height: 350px;
     justify-content: space-around;
-    padding: 50px 5px;
+    box-sizing: border-box;
+    padding: 20px 70px;
 }
 
 .product-card {
@@ -188,6 +193,7 @@ a {
 
 .slogan-div {
     display: flex;
+    box-sizing: border-box;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -200,44 +206,12 @@ a {
 }
 
 
-.components-span {
-    position: absolute;
-    font-size: 25px; 
-    top: 550px;
-    left: 175px;
-    width: 200px;
-    color: white;
-
-}
-
-.prebuild-span {
-    position: absolute;
-    font-size: 25px;
-    top: 550px;
-    left: 620px;
-    color: white;
-}
-
-
 .products-img {
-    position: absolute;
-    top: 230px;
-    left: 45px;
-    width: 370px;
-    height: auto;
+    position: relative;
     transition: transform 0.3s ease;
     filter: saturate(150%);
 }
 
-.prebuild-img {
-    position: absolute;
-    top: 242px;
-    left: 535px;
-    width: 300px;
-    height: auto;
-    transition: transform 0.3s ease;
-
-}
 .products-img:hover {
     transform: scale(1.1);
 }
@@ -246,14 +220,32 @@ a {
     transform: scale(1.1);
 }
 
-
-.laptops-img {
-    position: absolute;
-    top: 290px;
-    width: 300px;
+#accessories-img {
+    width: 325px;
     height: auto;
-    transition: transform 0.3s ease;
+    margin-top: -35px;
+    margin-left: -2px;
 }
+
+#components-img {
+    width: 280px;
+    height: auto;
+    margin-top: -45px;
+    margin-left: 16px;
+}
+
+#laptops-img {
+    width: 290px;
+    height: auto;
+    margin-left: 6px;
+}
+
+.cards-span{
+    position: absolute;
+    margin-top: 270px;
+    margin-left: 100px;
+}
+
 
 
 .laptops-img:hover {
@@ -261,26 +253,10 @@ a {
 }
 
 
-.laptop-span {
-    position: absolute;
-    font-size: 25px;
-    top: 550px;
-    left: 1090px;
-    color: white;
-}
 
 
-.offers {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr)); 
-    gap: 5px;
-    margin-top: 100px;
-    margin-left: 50px;
-    width: 1240px;
-    height: 450px;
-    padding: 20px;
-    box-sizing: border-box;
-}
+
+
 
 .card {
     display: flex;
@@ -1631,7 +1607,7 @@ input[type="password"] {
 .container-brands {
     width: 100%;
     height: 150px;
-    margin-top: 20px;
+    margin-top: 350px;
     margin-bottom: 50px;
     padding: 10px 40px;
 }
@@ -2123,7 +2099,7 @@ input[type="password"] {
     display: flex;
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 50px;
     width: 60px;
     height: 60px;
     border-radius: 50%;

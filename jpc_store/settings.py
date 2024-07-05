@@ -88,7 +88,6 @@ DATABASES = {
         'NAME': 'jpc_db',
         'USER': 'felipe',
         'PASSWORD': 'IdeaTab2005',
-        'HOST': 'localhost',
         'PORT': '3306'
     }
 }

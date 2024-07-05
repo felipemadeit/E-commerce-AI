@@ -528,6 +528,7 @@ def sign_up_view (request):
         return render(request, 'sign_up.html', {
             'form' : UserCreationForm
         })
+        
     else:
         # If the method is not get is a post method
         # Validate if the passwords match 
