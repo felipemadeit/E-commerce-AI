@@ -41,7 +41,7 @@ header {
 .logo-nav {
     width: 70px;
     height: 70px;
-    margin-left: 50px;
+    left: 30px;
 }
 
 .list-nav {
@@ -49,7 +49,7 @@ header {
     list-style: none;
     gap: 3rem;
     margin: 0;
-    margin-right: 150px;
+    margin-right: 100px;
 }
 
 .list-nav a {
@@ -81,18 +81,58 @@ header {
 
 .logo {
     display: flex;
-    margin-left: 155px;
+    margin-left: 150px;
     margin-top: -1px;
     filter: invert(100%);
 }
 
-.search {
-    position: absolute;
-    top: 27px;
-    margin-left: 500px;
-    display: inline-block;
-
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
 }
+
+.menu-toggle {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    z-index: 9999999999;
+    background-color: rebeccapurple;
+}
+
+
+@media (max-width: 800px ) {
+    .logo {
+        margin-left: 20px;
+    }
+
+    .list-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-toggle {
+        position: absolute;
+        display: flex;
+        right: 40px;
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+        transition: 0.2s all ease-out;
+        cursor: pointer;
+    }
+
+    .nav-toggle:hover {
+        transform: rotate(90deg);
+    }
+
+    .list-nav.active {
+        display: flex;
+    }
+}
+    
 
 .total-cart {
     position: absolute;
@@ -136,10 +176,6 @@ header {
     cursor: pointer;
 }
 
-.menu-toggle {
-    display: none;
-    cursor: pointer;
-}
 
 
 .hashtag-text {
@@ -240,13 +276,22 @@ a {
     margin-left: 6px;
 }
 
-.cards-span{
+.container-span {
+    display: flex;
     position: absolute;
-    margin-top: 270px;
-    margin-left: 100px;
+    width: 100%;
+    height: 30px;
+    top: 240px;
+    box-sizing: border-box;
+    padding: 2px 225px;
+    gap: 325px;
 }
 
-
+.cards-span {
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+}
 
 .laptops-img:hover {
     transform: scale(1.1);

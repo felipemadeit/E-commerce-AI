@@ -6,6 +6,8 @@
     Home
 {% endblock %}
 {% block body %}
+        
+    </div>
     <div class="slogan-div">
         <img class="slogan-img" src="{% static 'media/brand/letras.png' %}">
     </div>
@@ -13,15 +15,17 @@
         <div class="product-card">
             <a href="{% url 'accessory' %}"><img class="products-img" id="accessories-img" src="{% static 'media/brand/compnts.png' %}"></a>            
         </div>
-        <span id="components-span" class="cards-span">Accessories</span>
         <div class="product-card">
             <a href="{% url 'components' %}"><img class="products-img" id="components-img" src="{% static 'media/brand/prebuild.png' %}"></a>
         </div>
-        <span id="prebuild-span" class="cards-span">Components</span>
         <div class="product-card">
             <a href="{% url 'laptops' %}"><img class="products-img" id="laptops-img" src="{% static 'media/brand/alp.png' %}"></a>
         </div>
-        <span id="laptop-span" class="cards-span">Laptops</span>
+        <div class="container-span">
+            <span id="accessories-span" class="cards-span">Accessories</span>
+            <span id="prebuild-span" class="cards-span">Components</span>
+            <span id="laptop-span" class="cards-span">Laptops</span>
+        </div>
     </div>
 
     <!--Div for brands-->

@@ -1,5 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     fetchCartItemCount();
+
+    const menuToggle = document.getElementById('list-nav');
+    const buttonToggle = document.getElementById('nav-toggle');
+
+    function unfoldMenu() { 
+        if (menuToggle.style.display === 'none' || menuToggle.style.display === '') {
+            menuToggle.style.display = 'flex';
+        } else {
+            menuToggle.style.display = 'none';
+        }
+    }
+
+    buttonToggle.addEventListener('click', function() {
+        unfoldMenu();
+    });
+
+    
 });
 
 function fetchCartItemCount() {
