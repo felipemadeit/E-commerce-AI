@@ -85,8 +85,8 @@ WSGI_APPLICATION = 'jpc_store.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'jpc_db',
-        'USER': 'felipe',
+        'NAME': 'products_database',
+        'USER': 'julian',
         'PASSWORD': 'IdeaTab2005',
         'PORT': '3306'
     }
