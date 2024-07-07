@@ -193,28 +193,52 @@ def home_view(request):
 
 
 def components_view (request):
+    """
+    
+        This view get all the products objects to display
+        in all components view
+    
+    """
 
+    # Queryset with all products
     products_list = Product.objects.all()
     
+    """
+    
+        When the user needs a specifir order 
+        he click a button and the page send a 
+        specific order, then the following code 
+        return the products ordered by the request
+        of the user 
+    
+    """
+    
+    # The request to get the specific order
     order_by = request.GET.get('order', '')
     
+    # If to order the products by the higher price
     if order_by == 'higher-price':
         products_list = products_list.order_by('-price')
+    # Order by lower price
     elif order_by == 'lower-price':
         products_list = products_list.order_by('price')
     
-    
+    # Pagination with the queryset and the products per page
     paginator = Paginator(products_list, 32)
 
+    # Get the page number 
     page_number = request.GET.get('page')
 
+    # Pagination with the specific page
     try:
         products = paginator.page(page_number)
+    # Handle the exceptions
     except PageNotAnInteger:
         products = paginator.page(1)
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
+    # Return a context with the products queryset, the currently page and the order
     return render(request, 'components.html', {
         'products': products,
         'current_page': page_number,
@@ -224,6 +248,14 @@ def components_view (request):
 
 
 def processors_view(request):
+    
+    """
+    
+    The processors view is similar to the components view
+    the unique difference is that the page only display the 
+    processors
+    
+    """
 
     # SQL query for get all processors and their data
     processors_list = Product.objects.filter(category = 1)
@@ -254,6 +286,14 @@ def processors_view(request):
     })
 
 def graphics_view (request):
+    
+    """
+    
+    The graphics view is similar to the components view
+    the unique difference is that the page only display the 
+    graphics cards
+    
+    """
 
     # SQL Query for get all graphis cards and their data
 
@@ -271,6 +311,14 @@ def graphics_view (request):
     })
 
 def ram_view (request):
+    
+    """
+    
+    The ram view is similar to the components view
+    the unique difference is that the page only display the 
+    rams
+    
+    """
 
     # SQL Query for get all ram and their data
 
@@ -288,6 +336,15 @@ def ram_view (request):
     })
 
 def motherboards_view (request):
+    
+    """
+    
+    The motherboards view is similar to the components view
+    the unique difference is that the page only display the 
+    motherboards
+    
+    """
+    
 
     # SQL Query for get all motherboards ant their data
     motherboard_list = Product.objects.filter(category = 6)
@@ -318,6 +375,16 @@ def motherboards_view (request):
 
 def storage_view (request):
     
+    
+    """
+    
+    The storage view is similar to the components view
+    the unique difference is that the page only display the 
+    hard disks 
+    
+    """
+    
+    
     # SQL Query for get all SDD, M.2 ant their data
     storage_list = Product.objects.filter(category = 7)
     
@@ -346,6 +413,16 @@ def storage_view (request):
     })
 
 def power_view (request):
+    
+    
+    """
+    
+    The power view is similar to the components view
+    the unique difference is that the page only display the 
+    power supplies
+    
+    """
+    
 
     # SQL Query for get all SDD, M.2 ant their data
     power_list = Product.objects.filter(category = 8)
@@ -375,6 +452,15 @@ def power_view (request):
     })
 
 def case_view (request):
+    
+    """
+    
+    The case view is similar to the components view
+    the unique difference is that the page only display the 
+    cases
+    
+    """
+    
 
     # SQL Query for get all SDD, M.2 ant their data
     case_list = Product.objects.filter(category = 9)
@@ -404,6 +490,15 @@ def case_view (request):
     })
 
 def headphones_view (request):
+    
+    """
+    
+    The headphones view is similar to the components view
+    the unique difference is that the page only display the 
+    headphones
+    
+    """
+    
 
     # SQL Query for get all headphones and their data
     headphone_list = Product.objects.filter(category = 10)
@@ -434,6 +529,15 @@ def headphones_view (request):
 
 
 def keyboard_view (request):
+    
+    """
+    
+    The keyboard view is similar to the components view
+    the unique difference is that the page only display the 
+    keyboards
+    
+    """
+    
 
     keyboard_list = Product.objects.filter(category = 4)
     
@@ -462,6 +566,14 @@ def keyboard_view (request):
     })
 
 def refrigeration_view (request):
+    
+    """
+    
+    The refrigeration view is similar to the components view
+    the unique difference is that the page only display the 
+    refrigerations
+    
+    """
 
     refrigeration_list = Product.objects.filter(category = 11)
     
@@ -490,6 +602,14 @@ def refrigeration_view (request):
     })
 
 def monitor_view(request):
+    
+    """
+    
+    The monitor view is similar to the components view
+    the unique difference is that the page only display the 
+    monitors
+    
+    """
 
     monitor_list = Product.objects.filter(category = 12)
     
@@ -519,6 +639,14 @@ def monitor_view(request):
 
 def chair_view (request):
     
+    """
+    
+    The chair view is similar to the components view
+    the unique difference is that the page only display the 
+    chairs
+    
+    """
+    
     chair_list = Product.objects.filter(category = 13)
     
     order_by = request.GET.get('order', '')
@@ -547,6 +675,14 @@ def chair_view (request):
 
 
 def accesory_view (request):
+    
+    """
+    
+    The accessory view is similar to the components view
+    the unique difference is that the page only display the 
+    accessories
+    
+    """
 
     accesory_list = Product.objects.filter(category = 14)
     
@@ -574,10 +710,15 @@ def accesory_view (request):
         'order': order_by
     })
 
-def prebuilds_view(request):
-    return render(request, 'prebuilds.html')
-
 def laptops_view (request):
+    
+    """
+    
+    The laptops view is similar to the components view
+    the unique difference is that the page only display the 
+    laptops
+    
+    """
     
     laptops_list = Product.objects.filter(category = 5)
     
@@ -610,8 +751,15 @@ def laptops_view (request):
     
 def sign_up_view (request):
     
+    """
+
+        This view is for the user that needs to create an account
+    
+    """
+    
     if request.method == 'GET':
         return render(request, 'sign_up.html', {
+            # Retun the request with a form to the get the neccesary data to create the account
             'form' : UserCreationForm
         })
         
@@ -621,7 +769,9 @@ def sign_up_view (request):
         if request.POST['password1'] == request.POST['password2']:
             # Try to create a user with the user data and save it
             try:
+                # Create a user in the database
                 user =  User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
+                # Save the user 
                 user.save()
                 # Create a session to the user registered
                 login(request, user)
@@ -631,96 +781,159 @@ def sign_up_view (request):
             # The integrity error is when the user try to sign up but he is already created
             except IntegrityError:
                 return render(request, 'login.html',  {
+                    # Return the form with the error
                     'form' : UserCreationForm, 
                     'error': 'UserName Already Exists'
                 })
         else:
+            # Another error is when the password and the verification do not match
             return render(request, 'sign_up.html', {
                 'form': UserCreationForm,
                 'error': 'Passwords do Not Match'
             })
 
+
+# This view is to log out 
 def sign_out (request):
     logout(request)
     return redirect('home')
 
 def login_view(request):
+    
+    """
+    
+        Login view
+            1. Form to login 
+            2. When the user is not authenticated and he wants to buy, must first authenticate
+                from the product view the user can authenticate, when the user authenticate
+                from the product view, when the user finish the authenticating the page return
+                to the product that before of the process of authentication the user wants to buy
+    
+    """
+    
     if request.method == 'GET':
+        # Retrieve the 'next' URL parameter from the GET request. This is often used to redirect the user to the
+        # page they originally intended to visit after they log in.
         next_url = request.GET.get('next', '')
         print(f"GET - next: {next_url}")
+    
+        # Render the login page with the AuthenticationForm and pass the 'next' URL.
         return render(request, 'login.html', {
             'form': AuthenticationForm(),
             'next': next_url
         })
+    
     else:
+        # Create an instance of AuthenticationForm with the POST data.
         form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            next_url = request.POST.get('next')
-            print(f"POST - next: {next_url}")
-            if next_url:
-                return redirect(next_url)
-            return redirect('home')
-        else:
-            next_url = request.POST.get('next', '')
-            print(f"POST - next (error): {next_url}")
-            return render(request, 'login.html', {
-                'form': form,
-                'error': 'Username or password is incorrect',
-                'next': next_url
-            })
+    
+    # Check if the form is valid (i.e., if the username and password are correct).
+    if form.is_valid():
+        # Get the authenticated user from the form.
+        user = form.get_user()
+        
+        # Log the user in.
+        login(request, user)
+        
+        # Retrieve the 'next' URL parameter from the POST request.
+        next_url = request.POST.get('next')
+        print(f"POST - next: {next_url}")
+        
+        # If there is a 'next' URL, redirect the user to that URL.
+        if next_url:
+            return redirect(next_url)
+        
+        # If there is no 'next' URL, redirect the user to the home page.
+        return redirect('home')
+    else:
+        # If the form is not valid (i.e., if the username or password is incorrect),
+        # retrieve the 'next' URL parameter from the POST request.
+        next_url = request.POST.get('next', '')
+        print(f"POST - next (error): {next_url}")
+        
+        # Render the login page again with the form, an error message, and the 'next' URL.
+        return render(request, 'login.html', {
+            'form': form,
+            'error': 'Username or password is incorrect',
+            'next': next_url
+        })
+
 
 def product_view(request, product_id):
+    """
+    This view is for viewing the detail of a product.
+    """
 
-
+    # Get the product that matches the requested id
     product = get_object_or_404(Product, id=product_id)
-    
-    
+
     if request.method == 'POST':
+        # Get the quantity from the POST request, defaulting to 1 if not provided
         quantity = int(request.POST.get('quantity', 1))
-        if quantity <=0:
-            quantity = 1
-            
-            
-        cartItem, created = Cart.objects.get_or_create(user = request.user, product = product, defaults={'quantity': quantity} )
         
+        # Ensure the quantity is at least 1
+        if quantity <= 0:
+            quantity = 1
+
+        # Retrieve or create a Cart item for the user and product.
+        # If the Cart item is created, set the default quantity.
+        cartItem, created = Cart.objects.get_or_create(
+            user=request.user,
+            product=product,
+            defaults={'quantity': quantity}
+        )
+
+        # If the Cart item already exists, update the quantity
         if not created:
             cartItem.quantity += quantity
             cartItem.save()
         else:
+            # If the Cart item was just created, ensure the quantity is set correctly
             cartItem.quantity = quantity
             cartItem.save()
-            
+
+        # Check if the request is an AJAX request
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             return JsonResponse({'success': True})
-        
-    
-    
-    return render(request, 'product.html',  {
+
+    # Render the product detail page
+    return render(request, 'product.html', {
         'product': product
     })
 
 
-
 def cart_view(request):
     if request.method == 'POST':
+        # Parse the JSON body of the request to get the item ID and quantity
         data = json.loads(request.body)
         item_id = data.get('item_id')
         quantity = data.get('quantity')
+        
         if item_id and quantity:
             try:
+                # Attempt to get the Cart item for the given item ID and current user
                 cart_item = Cart.objects.get(id=item_id, user=request.user)
+                
+                # Update the quantity of the Cart item and save the changes
                 cart_item.quantity = int(quantity)
                 cart_item.save()
+                
+                # Return a JSON response indicating success
                 return JsonResponse({'success': True})
             except Cart.DoesNotExist:
+                # If the Cart item does not exist, return a JSON response indicating failure
                 return JsonResponse({'success': False, 'error': 'Item not found'})
         else:
+            # If the item ID or quantity is missing, return a JSON response indicating invalid data
             return JsonResponse({'success': False, 'error': 'Invalid data'})
     else:
+        # If the request method is GET, retrieve all Cart items for the current user
         cart_items = Cart.objects.filter(user=request.user)
-        quantity_range = range(1, 16) 
+        
+        # Define a range for quantity selection (1 to 15)
+        quantity_range = range(1, 16)
+        
+        # Render the cart.html template with the Cart items and quantity range
         return render(request, 'cart.html', {
             'cart': cart_items,
             'quantity_range': quantity_range
