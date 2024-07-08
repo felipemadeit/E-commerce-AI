@@ -305,9 +305,23 @@ def graphics_view (request):
         cards = cards.order_by('-price')
     elif order_by == 'lower-price':
         cards = cards.order_by('price')
+        
+    paginator = Paginator(cards, 16)
+
+    page_number = request.GET.get('page')
+
+    try:
+        products = paginator.page(page_number)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
 
     return render(request, 'gpu.html', {
-        'products' : cards
+        'products' : products,
+        'current_page': page_number,
+        'order': order_by
     })
 
 def ram_view (request):
