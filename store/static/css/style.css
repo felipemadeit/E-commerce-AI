@@ -49,7 +49,7 @@ header {
     list-style: none;
     gap: 3rem;
     margin: 0;
-    margin-right: 100px;
+    margin-right: 145px;
 }
 
 .list-nav a {
@@ -199,6 +199,20 @@ header {
     padding: 20px 70px;
 }
 
+
+.container-cards span:nth-child(1) {
+    margin-right: auto; 
+}
+
+.container-cards span:nth-child(2) {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-cards span:nth-child(3) {
+    margin-left: auto; 
+}
+
 .product-card {
     display: flex;
     width: 300px;
@@ -238,6 +252,8 @@ a {
 
 .slogan-img {
     filter: invert(1.0);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -282,8 +298,31 @@ a {
     height: 30px;
     top: 240px;
     box-sizing: border-box;
-    padding: 2px 225px;
-    gap: 325px;
+    gap: 300px;
+    padding: 2px 270px;
+    background-color: red;   
+}
+
+@media only screen and (min-width: 1700px) {
+
+    .container-span {
+        padding: 2px 300px;
+        background-color: rebeccapurple;   
+    }
+}
+
+
+.container-span span:nth-child(1) {
+    margin-right: auto; 
+}
+
+.container-span span:nth-child(2) {
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+.container-span span:nth-child(3) {
+    margin-left: auto;
 }
 
 .cards-span {
@@ -1653,14 +1692,18 @@ input[type="password"] {
     height: 150px;
     margin-top: 350px;
     margin-bottom: 50px;
-    padding: 10px 40px;
+    padding: 10px 100px;
+    box-sizing: border-box;
+    justify-content: center;
 }
 
 .container-cards-brands {
     display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0 50px;
     box-sizing: border-box;
-    gap: 20px;
+    gap: 80px;
 
 }
 
