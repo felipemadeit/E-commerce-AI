@@ -299,15 +299,13 @@ a {
     top: 240px;
     box-sizing: border-box;
     gap: 300px;
-    padding: 2px 270px;
-    background-color: red;   
+    padding: 2px 270px;   
 }
 
 @media only screen and (min-width: 1700px) {
 
     .container-span {
-        padding: 2px 300px;
-        background-color: rebeccapurple;   
+        padding: 2px 300px;   
     }
 }
 
@@ -1688,24 +1686,17 @@ input[type="password"] {
 
 
 .container-brands {
+    display: inline-flex;
     width: 100%;
     height: 150px;
     margin-top: 350px;
     margin-bottom: 50px;
-    padding: 10px 100px;
+    padding: 2px 100px;
     box-sizing: border-box;
     justify-content: center;
 }
 
-.container-cards-brands {
-    display: inline-flex;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 50px;
-    box-sizing: border-box;
-    gap: 80px;
 
-}
 
 .container-img-brand {
     display: flex;
